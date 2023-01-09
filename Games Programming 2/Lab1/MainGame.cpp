@@ -32,8 +32,9 @@ void MainGame::initSystems()
 	gameAudio.addAudioTrack("..\\res\\background.wav");
 
 
-	mesh1.loadModel("..\\res\\monkey3.obj");
+	mesh1.loadModel("..\\res\\house.obj");
 	mesh2.loadModel("..\\res\\monkey3.obj");
+	mesh3.loadModel("..\\res\\cup.obj");
 	
 	myCamera.initCamera(glm::vec3(0, 0, -5), 70.0f, (float)_gameDisplay.getWidth()/_gameDisplay.getHeight(), 0.01f, 1000.0f);
 
@@ -94,7 +95,7 @@ void MainGame::drawGame()
 	_gameDisplay.clearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
 	
 	transform.SetPos(glm::vec3(sinf(counter), 0.5, 0.0));
-	transform.SetRot(glm::vec3(0.0, 0.0, counter * 5));
+	transform.SetRot(glm::vec3(0.0, 0.0, 0.0));
 	transform.SetScale(glm::vec3(0.6, 0.6, 0.6));
 	
 	Texture texture("..\\res\\bricks.jpg"); //load texture
@@ -102,13 +103,13 @@ void MainGame::drawGame()
 
 	shader.Bind();
 	shader.Update(transform, myCamera);
-	texture.Bind(0);
+	texture1.Bind(0);
 	mesh1.draw();
 	mesh1.updateSphereData(*transform.GetPos(), 0.6f);
 	
 
 	transform.SetPos(glm::vec3(-sinf(counter), -0.5, -sinf(counter)*5));
-	transform.SetRot(glm::vec3(0.0, 0.0, counter * 5));
+	transform.SetRot(glm::vec3(0.0, 0.0, 0.0));
 	transform.SetScale(glm::vec3(0.6, 0.6, 0.6));
 
 	shader.Bind();
@@ -116,6 +117,18 @@ void MainGame::drawGame()
 	texture.Bind(0);
 	mesh2.draw();
 	mesh2.updateSphereData(*transform.GetPos(), 0.6f);
+	counter = counter + 0.05f;
+
+
+	transform.SetPos(glm::vec3(-sinf(counter), -0.5, 0.0));
+	transform.SetRot(glm::vec3(0.0, 0.0, 0.0));
+	transform.SetScale(glm::vec3(0.6, 0.6, 0.6));
+
+	shader.Bind();
+	shader.Update(transform, myCamera);
+	texture1.Bind(0);
+	mesh3.draw();
+	mesh3.updateSphereData(*transform.GetPos(), 0.6f);
 	counter = counter + 0.05f;
 
 				

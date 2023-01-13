@@ -12,7 +12,18 @@ MainGame::MainGame()
 	Display* _gameDisplay = new Display(); //new display
     Mesh* mesh1();
 	Mesh* mesh2();
+	Mesh* mesh3();
 	//Audio* audioDevice();
+
+	glEnable(GL_LIGHTING);
+	glEnable(GL_COLOR_MATERIAL);
+
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, Light_Ambient);
+
+	glEnable(GL_LIGHT0);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 }
 
 MainGame::~MainGame()
@@ -56,6 +67,9 @@ void MainGame::gameLoop()
 	}
 }
 
+
+
+
 void MainGame::processInput()
 {
 	SDL_Event evnt;
@@ -80,7 +94,7 @@ bool MainGame::collision(glm::vec3 m1Pos, float m1Rad, glm::vec3 m2Pos, float m2
 	if (distance*distance < (m1Rad + m2Rad))
 	{
 		//audioDevice.setlistener(myCamera.getPos(), m1Pos); //add bool to mesh
-		cout << distance << '\n';
+		cout << "collision detected: " << distance << '\n';
 		return true;
 	}
 	else

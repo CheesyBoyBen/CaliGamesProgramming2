@@ -25,6 +25,7 @@ private:
 	void processInput();
 	void gameLoop();
 	void drawGame();
+	void input();
 	bool collision(glm::vec3 m1Pos, float m1Rad, glm::vec3 m2Pos, float m2Rad);
 	//void playAudio(unsigned int Source, glm::vec3 pos);
 
@@ -36,9 +37,13 @@ private:
 	Camera myCamera;
 	Shader shader;
 	SDLAudio gameAudio;
+	SDLAudio Audio;
 
 	float counter;
 	unsigned int whistle;
 	unsigned int backGroundMusic;
+
+	GLfloat Light_Ambient[4] = { 0.1f, 0.1f, 0.4f , 1.0f };
+
 };
 
